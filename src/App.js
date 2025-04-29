@@ -1,5 +1,5 @@
+import { useRef } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 import RelaxPage from './RelaxPage';
 import Page1 from './Page1';
 import Page2 from './Page2';
@@ -9,17 +9,22 @@ import Page5 from './Page5';
 import LifePage from './LifePage';
 
 function App() {
-  const [playMusic, setPlayMusic] = useState(false);
+  const audioRef = useRef(null);
+
+  const handlePlayMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
 
   return (
     <Router>
-      {playMusic && (
-  <audio autoPlay loop style={{ display: 'none' }}>
-    <source src={`${process.env.PUBLIC_URL}/seasons.mp3`} type="audio/mpeg" />
-  </audio>
-)}
+      <audio ref={audioRef} loop style={{ display: 'none' }}>
+        <source src={`${process.env.PUBLIC_URL}/seasons.mp3`} type="audio/mpeg" />
+      </audio>
+
       <Routes>
-        <Route path="/" element={<RelaxPage setPlayMusic={setPlayMusic} />} />
+        <Route path="/" element={<RelaxPage handlePlayMusic={handlePlayMusic} />} />
         <Route path="/page1" element={<Page1 />} />
         <Route path="/page2" element={<Page2 />} />
         <Route path="/page3" element={<Page3 />} />
@@ -32,6 +37,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 

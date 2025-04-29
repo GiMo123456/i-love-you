@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function RelaxPage({ setPlayMusic }) {
+function RelaxPage({ handlePlayMusic }) {
   const [size, setSize] = useState(250);
   const [showBall, setShowBall] = useState(false);
 
   const handleStart = () => {
     setShowBall(true);
-    setPlayMusic(true);
+    handlePlayMusic(); // <-- trigger playing music!
   };
 
   const handleClick = () => {
@@ -75,7 +75,6 @@ function RelaxPage({ setPlayMusic }) {
             {size <= 60 && (
               <Link to="/page1" style={styles.button}>
                 Follow the light
-
               </Link>
             )}
           </div>
@@ -192,6 +191,7 @@ styleSheet.insertRule(twinkleKeyframes, styleSheet.cssRules.length);
 styleSheet.insertRule(fadeInKeyframes, styleSheet.cssRules.length);
 
 export default RelaxPage;
+
 
 
 
