@@ -14,11 +14,10 @@ function App() {
   return (
     <Router>
       {playMusic && (
-        <audio autoPlay loop style={{ display: 'none' }}>
-          <source src="/seasons.mp3" type="audio/mpeg" />
-        </audio>
-      )}
-
+  <audio autoPlay loop style={{ display: 'none' }}>
+    <source src={`${process.env.PUBLIC_URL}/seasons.mp3`} type="audio/mpeg" />
+  </audio>
+)}
       <Routes>
         <Route path="/" element={<RelaxPage setPlayMusic={setPlayMusic} />} />
         <Route path="/page1" element={<Page1 />} />
